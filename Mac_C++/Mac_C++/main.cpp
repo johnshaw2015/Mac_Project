@@ -87,27 +87,40 @@ void getChaJi(int *subArr, int subNum, int *parArr, int parNum, int *outArr)
     }
 }
 
+/**
+ *  求键值中值最大所对应的键
+ *
+ *  @param aimArray 键值对数组
+ *  @param iAimNum  键值对数组大小
+ *
+ *  @return 键
+ */
+int getMapMaxValue(int *aimArray, int iAimNum)
+{
+    if(nullptr == aimArray ){
+        return -1;
+    }
+    
+    //自动排序：升序
+    map<int,int> mapResult;
+    mapResult.clear();
+    for (int i = 0; i < iAimNum; i++) {
+        mapResult.insert(pair<int, int>(aimArray[i],i));
+    }
+    
+    map<int,int>::iterator iter;
+    iter = mapResult.end(); //end()指向最后一个元素的后面
+    iter--;
 
+    return iter->second;
+}
 
 int main(int argc, const char* argv[]) {
     //排序
-    double result[4] = {63,345,34,897};
-    //自动排序：升序
-    map<double,int> mapResult;
-    mapResult.clear();
-    for (int i = 0; i < 4; i++) {
-        mapResult.insert(pair<double, int>(result[i],i));
-    }
-   
-    map<double,int>::iterator iter;
-    for (iter = mapResult.begin(); iter != mapResult.end(); iter++) {
-        printf("%f = %d\n",iter->first,iter->second);
-    }
-    
-    iter = mapResult.end(); //end()指向最后一个元素的后面
-    iter--;
-    int iMaxValue = iter->second;
-    printf("iMaxValue = %d\n", iMaxValue);
+    int result[4] = {63,345,34,897};
+
+    int maxValueForkey = getMapMaxValue(result, 4);
+    cout <<"MaxNum = " <<maxValueForkey << endl;
     
     string str  ="最好放不是你法案是sadfasgfaqw";
     
