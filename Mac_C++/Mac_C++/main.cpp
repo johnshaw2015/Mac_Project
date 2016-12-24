@@ -95,7 +95,7 @@ void getChaJi(int *subArr, int subNum, int *parArr, int parNum, int *outArr)
  *
  *  @return 键
  */
-int getMapMaxValue(int *aimArray, int iAimNum)
+int getKeyWithMaxValue(int *aimArray, int iAimNum)
 {
     if(nullptr == aimArray ){
         return -1;
@@ -119,7 +119,7 @@ int main(int argc, const char* argv[]) {
     //排序
     int result[4] = {63,345,34,897};
 
-    int maxValueForkey = getMapMaxValue(result, 4);
+    int maxValueForkey = getKeyWithMaxValue(result, 4);
     cout <<"MaxNum = " <<maxValueForkey << endl;
     
     string str  ="最好放不是你法案是sadfasgfaqw";
