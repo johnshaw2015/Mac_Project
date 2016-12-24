@@ -56,6 +56,39 @@ string subNickName(string str,int start, int end, bool isNeedPoint)
     return temp;
 }
 
+/**
+ *  求差集
+ *
+ *  @param subArr 子集数组
+ *  @param subNum 子集数组大小
+ *  @param parArr 父集数组
+ *  @param parNum 父集数组大小
+ *  @param outArr 接收数组  保证足够大小，不能小于父集数组大小
+ */
+void getChaJi(int *subArr, int subNum, int *parArr, int parNum, int *outArr)
+{
+    if(nullptr == subArr || nullptr == parArr || nullptr == outArr ){
+        return;
+    }
+    
+    int iOutNum = 0;
+    for (int i = 0; i < parNum; i++) {
+        bool isEqual = false;
+        for (int j = 0; j < subNum; j++) {
+            if (subArr[j] == parArr[i] ) {
+                isEqual = true;
+            }
+        }
+        
+        if (!isEqual) {
+            outArr[iOutNum] = parArr[i];
+            iOutNum++;
+        }
+    }
+}
+
+
+
 int main(int argc, const char* argv[]) {
     //排序
     double result[4] = {63,345,34,897};
@@ -65,7 +98,7 @@ int main(int argc, const char* argv[]) {
     for (int i = 0; i < 4; i++) {
         mapResult.insert(pair<double, int>(result[i],i));
     }
-    
+   
     map<double,int>::iterator iter;
     for (iter = mapResult.begin(); iter != mapResult.end(); iter++) {
         printf("%f = %d\n",iter->first,iter->second);
@@ -80,6 +113,15 @@ int main(int argc, const char* argv[]) {
     
     string temp = subNickName(str,1,4,true);
     cout << temp << endl;
+    
+    int subArray[6] = {3,3,3,4,4,4};
+    int parArray[18] = {12,3,3,67,4,12,4,67,4,4,7812,3,334,5345,654634,765,548,854};
+    int getArr[18]  ={0};
+    getChaJi(subArray,6,parArray,18,getArr);
+    
+    for (int i = 0; i < 18; i++) {
+        cout << getArr[i] << endl;
+    }
     
     return 0;
 }
